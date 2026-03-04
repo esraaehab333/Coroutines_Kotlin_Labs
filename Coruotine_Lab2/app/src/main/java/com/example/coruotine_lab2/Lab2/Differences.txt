@@ -1,0 +1,29 @@
+## Differeance between SharedFlow and StateFlow
+ SharedFlow -> Event was Happend now
+ this like the broadcast reciver
+ Hot Flow يعني بيشتغل حتي لو مفيش حاجه بتجمعه
+ و مش مربوط بوجود سابسكرايبر اصلا
+ و كل كوليطتور بياخد نغس القيم ف نفس اللحظه
+ Thread Safe you can emit from any Corotines
+ MutableSharedFlow(
+     replay: Int,
+     extraBufferCapacity: Int,
+     onBufferOverflow: BufferOverflow
+ )
+  replay: Int, : عدد القيم اللي هيتخزنوا و بتعادوا لاي سابسكرايبر
+  sharedFlow.collect { value ->
+      println(value)
+  } دا هو السابسكرايبر
+  :
+
+  SUSPEND (الافتراضي) → يستنى لحد ما يبقى فيه مساحة
+
+  DROP_OLDEST → يمسح أقدم عنصر
+
+  DROP_LATEST → يتجاهل العنصر الجديد
+
+  مثال:
+ StateFlow -> Me in this status
+ need a initial value in mutable
+ احنا بنعمل نسختين النسخه الموتابول ان مبيتغيرش فيها و النسخه اللي بنكوليكت بيها اصلا
+ to store the ui emits بتحتفظ يعني م الاخر بالاستيت بتاعت ال ui fjhujd
